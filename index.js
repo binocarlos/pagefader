@@ -61,7 +61,9 @@ PageFader.prototype.render = function(){
     html.push('<div class="pagewrapper"><div class="bookpage">' + $(this).html() + '</div></div>');
   })
 
-  this.book.html('<div id="allwrapper">' + html.join('') + '</div>');
+  var allhtml = '<div id="allwrapper">' + html.join('') + '</div>';
+
+  this.book.html(allhtml);
 
   this.allwrapper = this.book.find('#allwrapper');
   this.allwrapper.css({
@@ -106,7 +108,7 @@ PageFader.prototype.resize = function(){
   this.pages.width(this.size.width).height(this.size.height);
   this.pages.each(function(index){
     $(this).css({
-      left:((index-1) * self.size.width) + 'px'
+      left:((index) * self.size.width) + 'px'
     })
   })
   this.emit('resize', this.size);
@@ -119,9 +121,6 @@ PageFader.prototype.animate_direction = function(dir){
   }
 
   var offset = (-nextpage * (this.size.width));
-
-  console.log('-------------------------------------------');
-  console.dir(offset);
 
   this.allwrapper.css({
     left:offset + 'px'
