@@ -140,6 +140,7 @@ PageFader.prototype.animate_direction = function(dir){
 
   */
   this.currentpage = nextpage;
+  this.emit('loaded', this.currentpage);
 
 }
 
