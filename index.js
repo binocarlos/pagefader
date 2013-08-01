@@ -80,6 +80,7 @@ PageFader.prototype.render = function(){
   this.resize();
 
   this.currentpage = this.options.startpage;
+  this.emit('loaded', this.currentpage);
 
   var resizingID = null;
 
