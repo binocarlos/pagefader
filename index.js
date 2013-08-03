@@ -67,22 +67,31 @@ PageFader.prototype.render = function(){
 
   this.allwrapper = this.book.find('#allwrapper');
   this.allwrapper.css({
-    position:'absolute'
+    position:'absolute',
+    overflow:'hidden'
   })
   this.pages = this.book.find('.pagewrapper');
   this.book.css({
     overflow:'hidden'
   })
   this.pages.css({
-    position:'absolute'
+    position:'absolute'    
   })
 
-  setAnimationTime(this.allwrapper, 1200);
+  this.pages.css({
+    display:'none'
+  })
+  this.pages.eq(0).css({
+    display:'block'
+  })
 
+  setAnimationTime(this.pages, 1200);
+
+  this.currentpage = 0;
   this.resize();
 
-  this.currentpage = this.options.startpage;
   this.emit('loaded', this.currentpage);
+
 
   var resizingID = null;
 
@@ -120,11 +129,20 @@ PageFader.prototype.animate_direction = function(dir){
     return;
   }
 
+  var currentelem = this.pages.eq(this.currentpage);
+  var nextelem = this.pages.eq(nextpage);
+  
   var offset = (-nextpage * (this.size.width));
 
-  this.allwrapper.css({
-    left:offset + 'px'
+  currentelem.css({
+    left:-(this.size.width) + 'px'
   })
+
+  setTimeout(function(){
+    currentelem.css({
+      display:'none'
+    })
+  }, this.options.animtime)
 
 /*
   var currentelem = this.pages.eq(this.currentpage);

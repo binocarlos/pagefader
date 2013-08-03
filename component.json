@@ -2,7 +2,7 @@
   "name": "pagefader",
   "repo": "binocarlos/pagefader",
   "description": "A JQuery component that takes HTML pages and creates a book that fades between them",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "keywords": [],
   "dependencies": {
     "component/emitter": "*",
